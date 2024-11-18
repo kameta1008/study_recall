@@ -1,24 +1,43 @@
 # README
+## データベース設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options                   |
+|--------------------|--------|--------------------- -----|
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| name               | string | null: false               |
 
-* Ruby version
+#### アソシエーション
 
-* System dependencies
+- has_many :study_records
 
-* Configuration
+---
 
-* Database creation
+### StudyRecords テーブル
 
-* Database initialization
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| title       | string     | null: false                    |
+| content     | text       | null: false                    |
+| user_id     | references | null: false, foreign_key: true |
 
-* How to run the test suite
+#### アソシエーション
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_many :review_schedules, dependent: :destroy
 
-* Deployment instructions
+---
 
-* ...
+### ReviewSchedules テーブル
+
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| study_record_id  | references | null: false, foreign_key: true |
+| review_date      | date       | null: false                    |
+| status           | string     | default: "incomplete"          | 
+
+#### アソシエーション
+
+- belongs_to :study_record
