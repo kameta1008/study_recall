@@ -11,11 +11,11 @@
 
 #### アソシエーション
 
-- has_many :study_records
+- has_many :studies
 
 ---
 
-### StudyRecords テーブル
+### Study テーブル
 
 | Column      | Type       | Options                        |
 |-------------|------------|--------------------------------|
@@ -40,4 +40,4 @@
 
 #### アソシエーション
 
-- belongs_to :study_record
+- belongs_to :study
