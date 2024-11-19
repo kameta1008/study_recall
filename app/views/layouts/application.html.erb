@@ -7,8 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'style', media: 'all' %>
-    <%= stylesheet_link_tag 'studies', media: 'all' %>
+    <%= stylesheet_link_tag "style", media: "all" %>
+    <% if controller_name == "studies" && action_name == "new" %>
+      <%= stylesheet_link_tag "new", media: "all" %>
+    <% end %>
+    <% if controller_name == "studies" && action_name == "show" %>
+      <%= stylesheet_link_tag "show", media: "all" %>
+    <% end %>
+    <% if controller_name == "studies" && action_name == "edit" %>
+      <%= stylesheet_link_tag "edit", media: "all" %>
+    <% end %>
     <%= javascript_importmap_tags %>
     
   </head>

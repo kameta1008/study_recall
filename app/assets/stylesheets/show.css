@@ -1,0 +1,93 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #555;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.study-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.study-meta {
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.study-meta p {
+  margin: 5px 0;
+}
+
+.study-content {
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.study-image {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.study-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.actions .btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.actions .btn:hover {
+  background-color: #0056b3;
+}
+
+.actions .btn-danger {
+  background-color: #dc3545;
+}
+
+.actions .btn-danger:hover {
+  background-color: #a71d2a;
+}
+
+.actions .btn-secondary {
+  background-color: #6c757d;
+}
+
+.actions .btn-secondary:hover {
+  background-color: #4e555b;
+}

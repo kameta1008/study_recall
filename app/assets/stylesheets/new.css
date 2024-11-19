@@ -1,4 +1,4 @@
-/* 全体の設定 */
+/* new.html.erb 専用スタイル */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f5f5f5;
@@ -7,7 +7,6 @@ body {
   padding: 0;
 }
 
-/* 見出し */
 h1 {
   text-align: center;
   font-size: 2em;
@@ -15,7 +14,6 @@ h1 {
   color: #555;
 }
 
-/* フォーム全体 */
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -25,7 +23,6 @@ form {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* フォームのラベル */
 form .field label {
   display: block;
   margin-bottom: 8px;
@@ -33,7 +30,6 @@ form .field label {
   color: #444;
 }
 
-/* 入力フィールド */
 form .field input[type="text"],
 form .field textarea,
 form .field input[type="file"] {
@@ -46,7 +42,6 @@ form .field input[type="file"] {
   box-sizing: border-box;
 }
 
-/* フォームのボタン */
 form .actions input[type="submit"] {
   background-color: #333;
   color: #fff;
@@ -63,7 +58,6 @@ form .actions input[type="submit"]:hover {
   background-color: #555;
 }
 
-/* エラー表示 */
 #error_explanation {
   background-color: #ffe0e0;
   color: #900;
@@ -79,7 +73,6 @@ form .actions input[type="submit"]:hover {
   list-style: none;
 }
 
-/* トップページリンク */
 a.btn-secondary {
   display: inline-block;
   margin-top: 20px;

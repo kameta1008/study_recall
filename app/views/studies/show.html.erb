@@ -1,0 +1,32 @@
+<body class="show-page">
+  <div class="container">
+    <h1>学習記録の詳細</h1>
+
+      <div class="study-details">
+        <h2><%= @study.title %></h2>
+      
+        <div class="study-meta">
+          <p><strong>投稿者:</strong> <%= @study.user.name %></p>
+          <p><strong>投稿日時:</strong> <%= @study.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        </div>
+      
+        <div class="study-content">
+          <p><%= @study.content %></p>
+        </div>
+      
+        <% if @study.image.attached? %>
+          <div class="study-image">
+            <%= image_tag @study.image.variant(resize: "500x500"), alt: "学習記録画像" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="actions">
+        <% if current_user == @study.user %>
+          <%= link_to "編集する", edit_study_path(@study), class: "btn btn-primary" %>
+          <%= link_to "削除する", study_path(@study), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+        <% end %>
+        <%= link_to "一覧に戻る", root_path, class: "btn btn-secondary" %>
+      </div>
+  </div>
+</body>
