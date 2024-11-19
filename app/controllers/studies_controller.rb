@@ -1,5 +1,5 @@
 class StudiesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   def index
     @studies = Study.order('created_at DESC')
   end
@@ -21,6 +21,19 @@ class StudiesController < ApplicationController
     study = Study.find(params[:id])
     study.destroy
     redirect_to root_path
+  end
+
+  def edit
+    @study = Study.find(params[:id])
+  end
+
+  def update
+    @study = Study.find(params[:id])
+    if @study.update(study_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

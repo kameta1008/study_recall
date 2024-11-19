@@ -1,0 +1,39 @@
+<h1>学習記録の編集</h1>
+
+<%= form_with(model: @study, local: true) do |f| %>
+  <% if @study.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@study.errors.count, "error") %>が発生しました:</h2>
+      <ul>
+        <% @study.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "学習タイトル" %><br>
+    <%= f.text_field :title, value: @study.title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "学習内容詳細" %><br>
+    <%= f.text_area :content, value: @study.content, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "画像アップロード（任意）" %><br>
+    <%= f.file_field :image, class: "form-control" %>
+    <% if @study.image.attached? %>
+      <p>現在の画像:</p>
+      <%= image_tag @study.image.variant(resize: "300x300") if @study.image %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "キャンセル", study_path(@study), class: "btn btn-secondary" %>
