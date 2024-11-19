@@ -1,0 +1,96 @@
+/* 全体の設定 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 見出し */
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin: 20px 0;
+  color: #555;
+}
+
+/* フォーム全体 */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* フォームのラベル */
+form .field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* 入力フィールド */
+form .field input[type="text"],
+form .field textarea,
+form .field input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* フォームのボタン */
+form .actions input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+form .actions input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* エラー表示 */
+#error_explanation {
+  background-color: #ffe0e0;
+  color: #900;
+  border: 1px solid #ffb3b3;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#error_explanation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* トップページリンク */
+a.btn-secondary {
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+  background-color: #777;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+a.btn-secondary:hover {
+  background-color: #555;
+}
