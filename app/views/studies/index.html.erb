@@ -18,6 +18,15 @@
               <%= image_tag study.image.variant(resize: "300x300"), class: "study-image", alt: "#{study.title}の画像" %>
             <% end %>
             <p>投稿者: <%= study.user.name %></p>
+
+            <!-- 3点メニューボタン -->
+            <div class="dropdown">
+              <button class="dropdown-button">⋮</button>
+              <div class="dropdown-menu">
+                <%= link_to "編集", edit_study_path(study), class: "dropdown-item" %>
+                <%= link_to "削除", study_path(study), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "dropdown-item" %>
+              </div>
+            </div>
           </li>
         <% end %>
       </ul>
