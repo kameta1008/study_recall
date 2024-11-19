@@ -1,2 +1,34 @@
-<h1>Studies#index</h1>
-<p>Find me in app/views/studies/index.html.erb</p>
+<div class="container">
+  <header class="header">
+    <h1>Study Recall</h1>
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" unless user_signed_in? %>
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" unless user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" if user_signed_in? %>
+  </header>
+
+  <main>
+    <h2>学習記録一覧</h2>
+    <% if @studies.present? %>
+      <ul class="study-list">
+        <% @studies.each do |study| %>
+          <li class="study-item">
+            <h3><%= link_to study.title, study_path(study) %></h3>
+            <p><%= truncate(study.content, length: 100) %></p>
+            <% if study.image.attached? %>
+              <%= image_tag study.image, class: "study-image", alt: "#{study.title}の画像" %>
+            <% end %>
+            <p>投稿者: <%= study.user.name %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>まだ投稿がありません。</p>
+    <% end %>
+  </main>
+
+  <% if user_signed_in? %>
+    <footer>
+      <%= link_to "新しい学習記録を投稿する", '#', class: "btn btn-success" %>
+    </footer>
+  <% end %>
+</div>

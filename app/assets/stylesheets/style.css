@@ -1,0 +1,142 @@
+/* Reset CSS */
+body, h1, h2, h3, p, ul, li, a, footer, header, div {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全体のスタイル */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7; /* 白に近い灰色 */
+  color: #333; /* 暗い灰色 */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #fff; /* 白背景 */
+  border: 1px solid #ddd; /* 薄い枠線 */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  padding: 20px;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #000; /* 黒文字 */
+}
+
+.header .btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #333;
+  background-color: #fff; /* 白背景 */
+  color: #333; /* 暗い灰色文字 */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.header .btn:hover {
+  background-color: #333; /* 背景を黒に */
+  color: #fff; /* 白文字 */
+}
+
+/* メインコンテンツ */
+.main {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.study-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.study-item {
+  padding: 15px;
+  border: 1px solid #ddd; /* 薄い枠線 */
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9; /* 非アクティブ背景 */
+  transition: background-color 0.2s ease;
+}
+
+.study-item:hover {
+  background-color: #eee; /* ホバー時の背景 */
+}
+
+.study-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.study-item p {
+  font-size: 14px;
+  color: #555; /* 中間灰色 */
+}
+
+.study-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* フッター */
+footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+footer .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #555;
+  background-color: #fff;
+  color: #555;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+footer .btn:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header h1 {
+    margin-bottom: 10px;
+  }
+}
