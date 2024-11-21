@@ -21,7 +21,7 @@
 
             <!-- 3点メニューボタン -->
             <div class="dropdown">
-              <button class="dropdown-button">⋮</button>
+              <button class="dropdown-button">...</button>
               <div class="dropdown-menu">
                 <%= link_to "編集", edit_study_path(study), class: "dropdown-item" %>
                 <%= link_to "削除", study_path(study), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "dropdown-item" %>
