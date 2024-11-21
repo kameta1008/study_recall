@@ -38,6 +38,7 @@ class StudiesController < ApplicationController
 
   def show
     @study = Study.find(params[:id])
+    @recall = @study.recalls.where(completed: false).order(:recall_date).first
   end
 
   private

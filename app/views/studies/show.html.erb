@@ -25,6 +25,11 @@
         <% if current_user == @study.user %>
           <%= link_to "編集する", edit_study_path(@study), class: "btn btn-primary" %>
           <%= link_to "削除する", study_path(@study), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+          <% if @recall.present? %>
+            <%= link_to "復習完了", complete_recall_path(@recall), method: :patch, data: { turbo_method: :patch, confirm: "本当に完了しますか？" }, class: "btn btn-success" %>          
+          <% else %>
+            <p>復習予定がありません。</p>
+          <% end %>        
         <% end %>
         <%= link_to "一覧に戻る", root_path, class: "btn btn-secondary" %>
       </div>
