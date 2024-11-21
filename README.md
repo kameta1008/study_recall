@@ -26,16 +26,16 @@
 #### アソシエーション
 
 - belongs_to :user
-- has_many :review_schedules, dependent: :destroy
+- has_many :recalls, dependent: :destroy
 
 ---
 
-### ReviewSchedules テーブル
+### Recalls テーブル
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| study_record_id  | references | null: false, foreign_key: true |
-| review_date      | date       | null: false                    |
+| study_id         | references | null: false, foreign_key: true |
+| recall_date      | date       | null: false                    |
 | status           | string     | default: "incomplete"          | 
 
 #### アソシエーション
