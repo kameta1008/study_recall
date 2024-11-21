@@ -36,7 +36,6 @@
 |------------------|------------|--------------------------------|
 | study_id         | references | null: false, foreign_key: true |
 | recall_date      | date       | null: false                    |
-| status           | string     | default: "incomplete"          | 
 
 #### アソシエーション
 
