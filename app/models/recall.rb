@@ -9,6 +9,7 @@ class Recall < ApplicationRecord
   private
 
   def generate_next_recall
+    Rails.logger.debug "generate_next_recall: interval=#{interval}, completed=#{completed}"
     next_intervals = {
       1 => 2,  # 3日後
       2 => 4,  # 7日後
@@ -16,7 +17,10 @@ class Recall < ApplicationRecord
     }
 
     next_interval = next_intervals[interval]
-    return unless next_interval
+    if next_interval.nil?
+      Rails.logger.debug "次の復習間隔がnilのため生成されません: interval=#{interval}"
+      return
+    end
 
     study.recalls.create!(
       recall_date: recall_date + next_interval.days,

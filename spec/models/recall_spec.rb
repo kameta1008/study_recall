@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Recall, type: :model do
   before do
     @study = FactoryBot.create(:study) 
-    @recall = FactoryBot.build(:recall, study: @study) 
+    @recall = FactoryBot.create(:recall, study: @study, recall_date: Date.today, interval: 1)
   end
 
   describe '復習予定日の保存' do
@@ -34,22 +34,34 @@ RSpec.describe Recall, type: :model do
     end
   end
 
-  describe '復習予定日の生成' do
-    context '新しい復習予定日を生成する場合' do
-      it '復習完了時に次の予定日が正しく生成される' do
-        @recall.update(completed: true)
+  describe '復習完了時の動作' do
+    context '次の復習予定日が生成される場合' do
+      it 'intervalが1の場合、次は2日後に予定が生成される' do
+        @recall.update(completed: true) # 復習完了
         next_recall = @study.recalls.last
-        expect(next_recall.recall_date).to eq(@recall.recall_date + 3.days) 
-        expect(next_recall.interval).to eq(2) 
+        expect(next_recall.recall_date).to eq(@recall.recall_date + 2.days)
+        expect(next_recall.interval).to eq(2) # 次の間隔が2（3日後）であること
+      end
+
+      it 'intervalが2の場合、次は4日後に予定が生成される' do
+        @recall.update(interval: 2, completed: true) # intervalを2に変更して復習完了
+        next_recall = @study.recalls.last
+        expect(next_recall.recall_date).to eq(@recall.recall_date + 4.days)
+        expect(next_recall.interval).to eq(4) # 次の間隔が4（7日後）であること
+      end
+
+      it 'intervalが4の場合、次は23日後に予定が生成される' do
+        @recall.update(interval: 4, completed: true) # intervalを4に変更して復習完了
+        next_recall = @study.recalls.last
+        expect(next_recall.recall_date).to eq(@recall.recall_date + 23.days)
+        expect(next_recall.interval).to eq(23) # 次の間隔が23（30日後）であること
       end
     end
 
-    context '次の復習予定がない場合' do
-      it '最後の復習を完了した場合、新しい予定日は生成されない' do
-        @recall.interval = 3
-        @recall.completed = true
-        @recall.save
-        expect(@study.recalls.count).to eq(1) 
+    context '次の復習予定日が生成されない場合' do
+      it 'intervalが23の場合、新しい予定日は生成されない' do
+        @recall.update(interval: 23, completed: true) # 最後の間隔を設定
+        expect(@study.recalls.count).to eq(1) # 新しい予定が生成されていないこと
       end
     end
   end
