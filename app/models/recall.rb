@@ -17,10 +17,8 @@ class Recall < ApplicationRecord
     }
 
     next_interval = next_intervals[interval]
-    if next_interval.nil?
-      Rails.logger.debug "次の復習間隔がnilのため生成されません: interval=#{interval}"
-      return
-    end
+    return unless next_interval
+
 
     study.recalls.create!(
       recall_date: recall_date + next_interval.days,

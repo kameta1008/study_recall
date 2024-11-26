@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Recall, type: :model do
   before do
     @study = FactoryBot.create(:study) 
+    @study.recalls.destroy_all 
     @recall = FactoryBot.create(:recall, study: @study, recall_date: Date.today, interval: 1)
   end
 
@@ -58,11 +59,11 @@ RSpec.describe Recall, type: :model do
       end
     end
 
-    context '次の復習予定日が生成されない場合' do
+   context '次の復習予定日が生成されない場合' do
       it 'intervalが23の場合、新しい予定日は生成されない' do
         @recall.update(interval: 23, completed: true) # 最後の間隔を設定
         expect(@study.recalls.count).to eq(1) # 新しい予定が生成されていないこと
       end
-    end
+    end 
   end
 end
