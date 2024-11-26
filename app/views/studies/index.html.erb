@@ -3,7 +3,7 @@
     <h1>Study Recall</h1>
     <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" unless user_signed_in? %>
     <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" unless user_signed_in? %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "btn btn-danger" if user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" if user_signed_in? %>
   </header>
 
   <main>
@@ -17,7 +17,16 @@
             <% if study.image.attached? %> 
               <%= image_tag study.image.variant(resize: "300x300"), class: "study-image", alt: "#{study.title}の画像" %>
             <% end %>
-            <p>投稿者: <%= study.user.name %></p>
+            <p><strong>学習日:</strong> <%= study.created_at.strftime("%m月%d日") %>
+              <strong>　次回復習日:</strong> 
+              <% if study.next_recall_date.present? %>
+                <%= study.next_recall_date.strftime("%m月%d日") %>
+              <% else %>
+                復習済！
+              <% end %>
+            </p>
+            <p><strong>投稿者:</strong> <%= study.user.name %></p>
+
 
             <!-- 3点メニューボタン -->
             <div class="dropdown">

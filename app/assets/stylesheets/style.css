@@ -150,6 +150,17 @@ footer .btn:hover {
   margin-bottom: 10px;
 }
 
+.study-item p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0; /* 適切な間隔を追加 */
+}
+
+.study-item p strong {
+  font-weight: bold;
+  color: #333;
+}
+
 .dropdown {
   position: absolute;
   top: 2px;

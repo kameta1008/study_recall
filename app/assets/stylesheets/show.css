@@ -1,3 +1,33 @@
+/* ツールチップのスタイル */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* 上方向に表示 */
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 既存のスタイル */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;
@@ -6,6 +36,7 @@ body {
   padding: 0;
 }
 
+/* 見出し */
 h1 {
   font-size: 2rem;
   margin-bottom: 20px;

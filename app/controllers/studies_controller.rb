@@ -1,7 +1,14 @@
 class StudiesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   def index
-    @studies = Study.order('created_at DESC')
+    @studies = Study.left_joins(:recalls)
+                    .select("studies.*, MIN(recalls.recall_date) AS next_recall_date")
+                    .group("studies.id")
+                    .order(Arel.sql("CASE 
+                      WHEN MIN(recalls.recall_date) IS NULL THEN 1
+                      WHEN MIN(recalls.recall_date) <= CURRENT_DATE THEN 0 
+                      ELSE 2 
+                    END, created_at DESC"))
   end
 
   def new

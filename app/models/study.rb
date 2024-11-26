@@ -7,6 +7,9 @@ class Study < ApplicationRecord
   validates :content, presence: true
   
   after_create :generate_initial_recall
+  def next_recall_date
+    recalls.where(completed: false).order(:recall_date).pluck(:recall_date).first
+  end
 
   private
 
