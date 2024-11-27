@@ -1,14 +1,20 @@
 class StudiesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  before_action :authenticate_user!
+  before_action :set_study, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:show, :edit, :update, :destroy]
   def index
-    @studies = Study.left_joins(:recalls)
-                    .select("studies.*, MIN(recalls.recall_date) AS next_recall_date")
-                    .group("studies.id")
-                    .order(Arel.sql("CASE 
-                      WHEN MIN(recalls.recall_date) IS NULL THEN 1
-                      WHEN MIN(recalls.recall_date) <= CURRENT_DATE THEN 0 
-                      ELSE 2 
-                    END, created_at DESC"))
+    if user_signed_in?
+      @studies = current_user.studies.left_joins(:recalls)
+                      .select("studies.*, MIN(recalls.recall_date) AS next_recall_date")
+                      .group("studies.id")
+                      .order(Arel.sql("CASE 
+                        WHEN MIN(recalls.recall_date) IS NULL THEN 1
+                        WHEN MIN(recalls.recall_date) <= CURRENT_DATE THEN 0 
+                        ELSE 2 
+                      END, created_at DESC"))
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -16,7 +22,7 @@ class StudiesController < ApplicationController
   end
 
   def create
-    @study = Study.new(study_params)
+    @study = current_user.studies.new(study_params)
     if @study.save
       redirect_to '/'
     else
@@ -25,17 +31,14 @@ class StudiesController < ApplicationController
   end
 
   def destroy
-    study = Study.find(params[:id])
-    study.destroy
+    @study.destroy
     redirect_to root_path
   end
 
   def edit
-    @study = Study.find(params[:id])
   end
 
   def update
-    @study = Study.find(params[:id])
     if @study.update(study_params)
       redirect_to root_path
     else
@@ -44,11 +47,18 @@ class StudiesController < ApplicationController
   end
 
   def show
-    @study = Study.find(params[:id])
     @recall = @study.recalls.where(completed: false).order(:recall_date).first
   end
 
   private
+
+  def set_study
+    @study = Study.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless @study.user_id == current_user.id
+  end
   def study_params
     params.require(:study).permit(:title, :content, :image).merge(user_id: current_user.id)
   end

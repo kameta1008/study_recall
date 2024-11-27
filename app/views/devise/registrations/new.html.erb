@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'registrations', media: 'all' %>
 <div class="contents row">
   <div class="container">
     <h2>Sign up</h2>
@@ -5,26 +6,36 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.text_field :name, autofocus: true, maxlength: "20" %>
-        <%= f.label :email %><br />
-        <%= f.email_field :email %>
+        <%= f.label :name, "お名前" %><br />
+        <%= f.text_field :name, autofocus: true, maxlength: "20", placeholder: "お名前を入力してください" %>
       </div>
 
       <div class="field">
-        <%= f.label :password %>
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, placeholder: "例: example@example.com" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード" %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "パスワードを入力してください" %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードを再度入力してください" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Sign up" %>
+        <%= f.submit "Sign up", class: "btn-primary" %>
+      </div>
+
+      <!-- ログインページへのリンク -->
+      <div class="login-link">
+        <p>すでにアカウントをお持ちの方:</p>
+        <%= link_to "Log in", new_user_session_path, class: "btn-login" %>
       </div>
     <% end %>
   </div>
