@@ -97,7 +97,8 @@ https://study-recall.onrender.com
 
 ## 開発環境
 Ruby on Rails<br>
-Render
+Render<br>
+VScode
 
 ## ローカルでの動作方法	
 以下のコマンドを順次実行<br>
